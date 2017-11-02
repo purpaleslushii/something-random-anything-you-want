@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The web page does not properly display the number of losses. Fix that.--> 
+<!-- The percentage of wins oftens displays a lot of decimal places. Fix this so only two
+     decimal places are displayed. That is, 33.33, not 33.333333333 -->
+<!-- Make the words "Image source" at the bottom of the page a hyperlink to
+     the web site www.public-domain-image.com -->
+<!-- Add a mouseover and mouseout event for the table row containing the images.
+     When the mouseover occurs, make the words "Public Domain Image dot com"
+		 appear in the outputDiv. When the mouseout event occurs, the words disappear. -->
+<!-- The function pickOneOfRemainingDoors() currently selects the lowest numbered door
+     that is a loser and was not selected by the user. Change this.
+		 If only one loser remains unselected, it has to be that one.
+		 If two losers remain, choose one of them randomly. -->
+
+<html>
+<head>
+<title>Monte Hall Problem</title>
+<script>
+function initialize()
+// get things ready... called by onload event
+{
+  // global variables used by other functions
+	plainCellStyle = "background-color:#C0C0C0";
+	highlightedCellStyle = "background-color:yellow";
+	totalNumberOfGames = 0;  // no games completed yet
+	numberOfTimesPlayerWon = 0; // no games yet, so no wins yet
+	numberOfTimesPlayerLost = 0; // no games yet, so no losses yet
+	userMadeFirstSelection = false; // determines which of two "rounds" we are in
+	doorWeOpenedAlready = -1; // this will be 0, 1, or 2 after the player makes a selection
+	clicksNotAllowed = false;  // used to temporarily disable click
+	doors = [ "win-or-lose", "win-or-lose", "win-or-lose" ]; // our representation of the doors
+	// let's get started
+	setUpForAGame();
+	document.getElementById('intruct').innerHTML = "Select a door...";
+}
+
+function setUpForAGame()
+// prepare for a new game... called from initialize() and secondRound()
+{
+   userMadeFirstSelection = false;
+	 // start with all doors as losers
+	 for(var i=0; i<doors.length; i++)
+	     doors[i] = "lose";
+	 var winner = Math.floor(Math.random() * 3); // max is 2, min is 0
+	 doors[winner] = "win"; // we now have 1 winner and 2 losers
+	 //alert("winning door is " + (winner+1));
+	 // reset all images and cells backgrounds on page
+	 for(var i=1; i<4; i++){
+	    var imageId = 'door' + i;
+	    document.getElementById(imageId).src = "locked-wooden-door_w290_h218.jpg";
+			document.getElementById(imageId).height = 218;
+			document.getElementById(imageId).width = 290;
+			}
+}
+
+function userSelected(doorNumber)
+// image click handler. doorNumber inidcates which image was clicked.
+{
+  if(clicksNotAllowed)
+	   return; // ignore this click
+	if (userMadeFirstSelection == false){
+	    // "highlight" the door by making it bigger
+	    var imageId="door"+doorNumber
+	    document.getElementById(imageId).height = document.getElementById(imageId).height * 1.2;
+			document.getElementById(imageId).width = document.getElementById(imageId).width * 1.2;
+	    firstRound(doorNumber);
+			}
+	else
+	    secondRound(doorNumber);
+}
+
+function delayedDisplay()
+// show the image. Called by firstRound()
+{
+  var imageId="door"+doorWeOpenedAlready;
+	document.getElementById(imageId).src="goat-and-bambis-fawns_w290_h218.jpg";
+	clicksNotAllowed = false; // pay attention to clicks again
+}
+
+function firstRound(doorNumber)
+// Display one of the losers and provide instructions. Called by userSelected()
+{
+   clicksNotAllowed = true; // temporarily ignore clicks
+	 userMadeFirstSelection = true; // remember that we have already done round one
+	 // display one of the losers and let player decide if she wants to switch or keep it
+	 var doorToOpen = pickOneOfRemainingDoors(doorNumber);
+	 var imageId="door"+doorToOpen;
+	 //document.getElementById(imageId).src="goat-and-bambis-fawns_w290_h218.jpg";
+	 setTimeout("delayedDisplay()",1000);
+	 doorWeOpenedAlready = doorToOpen; // remember this for round two
+	 document.getElementById('intruct').innerHTML = "I'll show you what's behind door number " +
+	       doorToOpen +". Pick one of the remaining doors to see if you win.";
+}
+
+function pickOneOfRemainingDoors(initialSelection)
+// Selects the loser to display (randomly, after you fix it). Called by firstRound()
+{
+   // show host can see behind doors... we have to peek. Select a door to look behind
+	 min = Math.ceil(1);
+	 max = Math.floor(3);
+	 
+	 if(intitalSelection == 1){
+		min = Math.ceil(2);
+		max = Math.floor(3);
+		candidate = Math.floor(Math.random() * (max - min +1)) + min;}
+		
+	if(initalSelection == 2){
+		min = Math.ceil(1);
+	    max = Math.floor(2);
+		r = Math.floor(Math.random() * (max - min +1)) + min;
+	if(r==1) candidate=1;
+	if(r=2) candidate=3;}
+		else{ 
+		 min = Math.ceil(1);
+		 max = Math.floor(2);
+		 candidate=Math.floor(Math.random() * (max - min +1)) + min;}
+	return candidate;
+	}
+	 
+	 
+	 
+	/* for (candidate=0; candidate<3; candidate++)
+	 	{
+			if ((candidate + 1 == initialSelection)	// they picked this one
+			     ||																	// OR
+			    (doors[candidate] == "win"))  			// this is the winner
+			   			continue;												// skip it
+			else
+							break;													// we found a loser
+		}*/
+	 //candidate++;  // door number is one more than array index
+	 
+	
+
+
+function secondRound(doorNumber)
+// Determine how the round ends (win/lose) and makes sure we're ready for a new game. Called by userSelected()
+{
+	if (doorNumber == doorWeOpenedAlready){
+	   alert("Pick one of the other doors");
+		 return; // ignore this click
+		 }
+	if (doors[doorNumber-1] == "win")
+	   playerWins(doorNumber);
+	else
+	   playerLoses(doorNumber);
+	// get ready for next game
+	setUpForAGame();
+}
+
+function playerWins(doorToOpen)
+// handle a win. Called by secondRound()
+{
+   var imageId="door"+doorToOpen;
+	 document.getElementById(imageId).src="blue-ford-falcon-ba-xr6-car_w290_h218.jpg"
+	 alert("you won!");
+	 totalNumberOfGames++;
+	 numberOfTimesPlayerWon++;
+	 var percent = numberOfTimesPlayerWon / totalNumberOfGames * 100;
+	 percent = percent.toFixed(2);
+	 displayStats(percent);
+}
+
+function playerLoses(doorToOpen)
+// handle a loss. Called by secondRound()
+{
+   var imageId="door"+doorToOpen;
+	 document.getElementById(imageId).src="goat-and-bambis-fawns_w290_h218.jpg";
+	 alert("you lost");
+	 totalNumberOfGames++;
+	 numberOfTimesPlayerLost++;
+	 var percent = numberOfTimesPlayerWon / totalNumberOfGames * 100;
+	  percent = percent.toFixed(2);
+	 displayStats(percent);
+}
+
+function displayStats(percentage)
+// Put the numbers at the top of the page. Called by playerWins() and PlayerLoses()
+{
+   document.getElementById('gamesDiv').innerHTML = totalNumberOfGames;
+	 document.getElementById('winsDiv').innerHTML = numberOfTimesPlayerWon;
+	 document.getElementById('lossesDiv').innerHTML = numberOfTimesPlayerLost;
+   document.getElementById('percentDiv').innerHTML = percentage;
+}
+
+function addData()
+{
+document.getElementById('outputDiv').innerHTML = "Public Domain Image dot com"; 
+}
+function removeData()
+{
+document.getElementById('outputDiv').innerHTML = "";
+}
+
+</script>
+</head>
+<body onload="initialize();">
+<table summary="layout" style="margin-left:auto;margin-right:auto;width:950px;text-align:center">
+<tr>
+<td><b>Games:</b> <div id="gamesDiv">0</div></td>
+<td><b>Wins:</b> <div id="winsDiv">0</div></td>
+<td><b>Losses:</b> <div id="lossesDiv">0</div></td>
+<td><b>Percent wins:</b> <div id="percentDiv">0</div></td>
+</tr>
+</table>
+<table id="theTable" border="1" cellpadding="10" cellspacing="0" summary="layout" style="margin-left:auto;margin-right:auto;width:950px;text-align:center">
+<tr>
+<td style="background-color:#C0C0C0"><img onmouseover = "addData()" onmouseout ="removeData()"  alt="door" src="locked-wooden-door_w290_h218.jpg" height="218" width="290" 
+       onclick="userSelected(1);" id="door1" />
+</td>
+<td style="background-color:#C0C0C0"><img onmouseover = "addData()" onmouseout ="removeData()" alt="door" src="locked-wooden-door_w290_h218.jpg" height="218" width="290"
+       onclick="userSelected(2);" id="door2" />
+</td>
+<td style="background-color:#C0C0C0"><img onmouseover = "addData()" onmouseout ="removeData()" alt="door" src="locked-wooden-door_w290_h218.jpg" height="218" width="290"
+       onclick="userSelected(3);" id="door3" />
+</td>
+</tr>
+<tr>
+<td colspan=3><h3><div id="intruct"></div></h3>
+</td>
+</tr>
+<tr>
+<td colspan=3>
+<h2>The Monte Hall Problem</h2>
+<p>
+Suppose you're on a game show, and you're given the choice of three doors: Behind 
+one door is a car; behind the others, goats. You pick a door, say No. 1, and the 
+host, who knows what's behind the doors, opens another door, say No. 3, which has 
+a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your 
+advantage to switch your choice? (vos Savant, Marilyn (9 September 1990a). 
+"Ask Marilyn". Parade Magazine: 16.)
+</p>
+<p><small>As quoted in <b>Monty Hall problem</b> on <a href="http://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia.</a></small></p>
+</td>
+</tr>
+</table>
+ <center><a href="https://pixnio.com/">Image Source</a> <div id="outputDiv"></div></center>
+ 
+</body>
+</html>
