@@ -1,0 +1,227 @@
+<svg	xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" preserveAspectRatio="meetOrSlice slice"
+>
+<style>
+.title{ text-anchor:middle;font-size:48px;}
+.msg{font-family:arial;font-size:24px; fill:#200;}
+text{font-family:cursive;font-size:28px; fill:#200; }
+circle{stroke:black}
+rect{fill:#80f; fill-opacity:.4;}
+rect.background{fill:none; }
+rect:hover{stroke-width: 3px;stroke: #60a; fill-opacity:.2;}
+rect:active{stroke-width: 5px;stroke: #083; fill-opacity:.3;fill:#280;}
+line{stroke:#0bf; stroke-width:1.5;}
+#L,#Nline0,#Nline1{stroke:red; stroke-width:5}
+path{stroke-width: 2px;stroke: black;}
+path:hover{stroke-width: 5px;stroke: #083; fill-opacity:.3;fill:#280;}
+.f1{fill:#46b;stroke:#000000;
+	animation-name: w1;
+	animation-duration: 11s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+@keyframes w1 {
+    0% {transform: rotate3d(500,200,120,0deg);}
+		100% {transform: rotate3d(500,200,120,360deg);}
+}
+
+</style>
+
+<script><![CDATA[
+xmlns="http://www.w3.org/2000/svg"
+xlink="http://www.w3.org/1999/xlink"
+var D=document.documentElement //the svg itself
+var M=[] //an array to hold the texts where messages will be displayed
+var linenum=0
+var X=[300, 700]
+var Y=[500,500]
+var ang=[-60,60]
+function rotate(){
+	var nmsg=6
+	for (var i=0;i<nmsg;i++){
+		M[i]=document.getElementById("msg"+i)
+	}
+	if (linenum>1) return
+	var L=document.getElementById("L")
+	var x1=L.getAttribute("x1")
+	var y1=L.getAttribute("y1")
+	var x2=L.getAttribute("x2")
+	var y2=L.getAttribute("y2")
+	var NewL=L.cloneNode(true)
+	NewL.setAttribute("id", "Nline"+linenum)
+	NewL.setAttribute("transform", "rotate("+ang[linenum]+","+X[linenum]+",500)")
+	document.documentElement.appendChild(NewL)
+
+	if (linenum==0){
+		X[2]=X[0]+(X[1]-X[0])* Math.cos(-Math.PI/3)
+		Y[2]=Y[0]+(X[1]-X[0])* Math.sin(-Math.PI/3)
+		newPoint(X[2],Y[2],"blue")
+	}
+	else{
+		var B1=document.getElementById("button1")
+		B1.setAttribute("visibility","visible")
+		var LG0=document.getElementById("LG0")
+		LG0.setAttribute("visibility","hidden")
+		var LG1=document.getElementById("LG1")
+		LG1.setAttribute("visibility","hidden")
+		var B0=document.getElementById("button0")
+		B0.setAttribute("visibility","hidden")
+	}
+	linenum++;
+
+}
+function intersect(L1,L2){
+	//receives two SVG lines as input, returns JavaScript point object with numeric attributes names .x and .y
+	var SlopInt=[]
+	SlopInt[0]=slopeIntercept(L1)
+	SlopInt[1]=slopeIntercept(L2)
+	//once you have the slope and intercept of both lines, you'll need to calculate the place where they intersect
+	//that's the centroid of the triangle.
+	var Pt={x:500, y:500}
+	return(Pt)
+}
+function slopeIntercept(L){
+	//receives an SVG line as input, object of form {slope:number,y-intercept:number}
+}
+var TriPath
+function makePath(){
+	var x2=X[2].toFixed(2)
+	var y2=Y[2].toFixed(2)
+	var B2=document.getElementById("button2")
+	B2.setAttribute("visibility","visible")
+	M[0].textContent="P1: "+X[0]+","+Y[0]
+	M[1].textContent="P2: "+X[1]+","+Y[1]
+	M[2].textContent="P3: "+x2+","+y2
+	trianglePathD="M "+X[0]+","+Y[0]+" "+X[1]+","+Y[1]+" "+x2+","+y2+" z"
+	M[3].textContent="<path d='"+trianglePathD+"'/>"
+	TriPath=document.createElementNS(xmlns,"path")
+	TriPath.setAttributeNS(null, "d", trianglePathD)
+	TriPath.setAttributeNS(null, "stroke", "black")
+	TriPath.setAttributeNS(null, "fill", "url(#OvalPattern)")
+	document.documentElement.appendChild(TriPath)
+
+}
+var stage=0
+var midline1, midline2
+function center(){
+	var CB=document.getElementById("centerbutton")
+
+	if (stage==0){
+		var midline1=document.createElementNS(xmlns,"line")
+		midline1.setAttributeNS(null, "x1", X[2])
+		midline1.setAttributeNS(null, "x2", X[2])
+		midline1.setAttributeNS(null, "y1", 0)
+		midline1.setAttributeNS(null, "y2", 1000)
+		document.documentElement.appendChild(midline1)
+		newPoint(X[2],Y[0],"blue")
+		CB.textContent="next median line"
+	}
+	if (stage==1){
+		var midline2=document.createElementNS(xmlns,"line")
+		var xmid=(X[1]+X[2])/2
+		var ymid=(Y[1]+Y[2])/2
+		newPoint(xmid,ymid,"green")
+		newPoint(X[0],Y[0],"green")
+		midline2.setAttributeNS(null, "x1", X[0])
+		midline2.setAttributeNS(null, "x2", xmid)
+		midline2.setAttributeNS(null, "y1", Y[0])
+		midline2.setAttributeNS(null, "y2", ymid)
+		document.documentElement.appendChild(midline2)
+		CB.textContent="intersect"
+
+	}
+	if (stage==2){
+        var midline3=document.createElementNS(xmlns,"line")
+        var xmid=(X[0]+X[2])/2
+        var ymid=(Y[0]+Y[2])/2
+        newPoint(X[1], Y[1], "pink")
+        newPoint(xmid,ymid,"pink")
+        midline3.setAttributeNS(null, "x1", X[1])
+        midline3.setAttributeNS(null, "x2", xmid)
+        midline3.setAttributeNS(null, "y1", Y[1])
+        midline3.setAttributeNS(null, "y2", ymid)
+        document.documentElement.appendChild(midline3)
+
+
+				CB.textContent="Find Center"
+
+	}
+	if (stage==3){
+        var centerX =(X[0]+X[1]+X[2])/3
+        var centerY =(Y[0]+Y[1]+Y[2])/3
+		var Pt={x:centerX,y:centerY}
+		newPoint(Pt.x, Pt.y, "purple")
+
+
+		var A=document.createElementNS(xmlns,"animateTransform")
+		A.setAttribute("dur", "5s")
+		A.setAttribute("repeatCount", "indefinite")
+		A.setAttribute("attributeName", "transform")
+		A.setAttribute("type", "rotate")
+		A.setAttribute("values", "0 500 384.53; 360 500 384.53")
+		TriPath.appendChild(A)
+		A.beginElement()
+	}
+	stage++
+}
+
+function newPoint(x,y,color){
+	var C=document.createElementNS(xmlns,"circle")
+	C.setAttributeNS(null, "r", 15)
+	C.setAttributeNS(null, "cx", x)
+	C.setAttributeNS(null, "cy", y)
+	C.setAttributeNS(null, "fill", color)
+	document.documentElement.appendChild(C)
+}]]>
+
+</script>
+<pattern id="OvalPattern" patternUnits="userSpaceOnUse" width="50" height="34" >
+		<g id="ovals4" transform="scale(2)" >
+			<ellipse cx="19"  cy="10" rx="5" ry="3" fill="#a75"/>
+			<ellipse  cx="11"  cy="5" rx="5" ry="3" fill="#35a"/>
+			<ellipse  cx="6" cy="12" rx="5" ry="3" fill="#5a3"/>
+			<g> <desc>Notice how four ovals are needed to draw one on the edge of the pattern space</desc>
+			<ellipse  cx="0" cy="1" rx="5" ry="3" fill="#c39"/>
+			<ellipse  cx="25" cy="1" rx="5" ry="3" fill="#c39"/>
+			<ellipse  cx="0" cy="18" rx="5" ry="3" fill="#c39"/>
+			<ellipse  cx="25" cy="18" rx="5" ry="3" fill="#c39"/>
+			</g>
+		</g>
+</pattern>
+
+<rect  x="0" y="0" width="100%" height="100%" class="background"/>
+<text x="50%" y="5%" class="title" textLength="500" lengthAdjust="spacingAndGlyphs">Constructing a triangle and finding its center</text>
+<line id="LG0" class="guide" x1="0" x2="100%" y1="0" y2="100%" />
+
+<line id="LG1" class="guide" x1="0" x2="100%" y1="100%" y2="0" />
+
+
+<line id="L" x1="300" x2="700" y1="500" y2="500" >
+<animate attributeName="stroke" dur="0.5" repeatCount="indefinite" values="red;#08a;red" end="R.click" />
+</line>
+<text x="50%" y="540" text-anchor="middle" textLength="250" lengthAdjust="spacingAndGlyphs">A line of length 100
+<tspan dy="34" x="50%">centered at center of screen</tspan>
+</text>
+<g id="button0">
+<text x="160" y="100" text-anchor="middle" textLength="200" lengthAdjust="spacingAndGlyphs">Click to clone and rotate</text>
+<rect id="R" x="50" y="65" width="230" height="50" onclick="rotate()"/>
+</g>
+<g id="button1" visibility="hidden">
+<text x="160" y="155" text-anchor="middle" textLength="160" lengthAdjust="spacingAndGlyphs">Construct triangle</text>
+<rect x="50" y="125" width="230" height="50" onclick="makePath()"/>
+</g>
+
+<g id="button2" visibility="hidden">
+<text id="centerbutton" x="160" y="220" text-anchor="middle" textLength="160" lengthAdjust="spacingAndGlyphs">Click to build center</text>
+<rect x="50" y="185" width="230" height="50" onclick="center()"/>
+</g>
+
+<text id="msg0" class="msg" x="200" y="520"></text>
+<text id="msg1" class="msg" x="700" y="520"></text>
+<text id="msg2" class="msg" x="400" y="135"></text>
+<text id="msg3" class="msg" x="500" y="625" text-anchor="middle" ></text>
+<text id="msg4" class="msg" x="600" y="680"></text>
+<text id="msg5" class="msg" x="370" y="245"></text>
+
+
+</svg>

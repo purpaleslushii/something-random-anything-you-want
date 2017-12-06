@@ -1,0 +1,201 @@
+
+<html>
+	<head>
+		<title>Example with user defined shape</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="https://threejs.org/build/three.js"></script>
+		<script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 1000 );
+		camera.position.z = 7;
+		
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setClearColor(0x446655);
+		document.body.appendChild( renderer.domElement );
+		
+		var geom = new THREE.Geometry(); 
+
+		var v0 = new THREE.Vector3(-15,0,0);
+		var v1 = new THREE.Vector3(-5,10,0);
+		var v2 = new THREE.Vector3(0,5,-10);
+		var v3 = new THREE.Vector3(5,0,0);
+		var v4 = new THREE.Vector3(15,10,0);
+		var v5 = new THREE.Vector3(25,0,-10);
+		
+		geom.vertices.push(v0);
+		geom.vertices.push(v1);
+		geom.vertices.push(v2);
+		geom.vertices.push(v3);
+		geom.vertices.push(v4);
+		geom.vertices.push(v5);
+		
+		geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+		geom.faces.push( new THREE.Face3( 1, 3, 2 ) );
+		geom.faces.push( new THREE.Face3( 4, 3, 2 ) );
+		geom.faces.push( new THREE.Face3( 4, 5, 2 ) );
+		geom.computeFaceNormals();
+		
+		function ranPos(){
+			return Math.floor((Math.random() *80) -40);
+		}
+		function runPos(){
+			return Math.floor((Math.random() *75) +25/100);
+		}
+		function ranZ(){
+			return -90;
+		}
+		
+		/*function scale(){
+		return math.floor(math.random() *50 +25/100);
+		}*/
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird1 = new THREE.Mesh( geom, material);
+		bird1.position.set(ranPos, runPos, ranZ);
+		bird1.position.set(ranPos, runPos, ranZ);
+		//scale = ranScale();
+		//bird1.scale.set(scale, scale, scale);
+		bird1.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(20, 0, 0 ) );
+		colorset(bird1.geometry)
+		scene.add(bird1);
+		
+		/*bird2=bird1.clone()
+		bird2.position.set (50, 0, -90);
+		
+		bird3=bird2.clone()
+		bird3.position.set(-50, 15, -190);
+		scene.add(bird3)
+		
+		bird4=bird3.clone()
+		bird4.position.set(-20, 30, -190);
+		scene.add(bird4)
+		
+		bird5=bird4.clone()
+		bird5.position.set(-10, 40, -90);
+		scene.add(bird5)
+		
+		bird6=bird5.clone()
+		bird6.position.set(-50, 50, -190);
+		scene.add(bird6)
+		
+		bird7=bird6.clone()
+		bird7.position.set(-50, 60, -190);
+		scene.add(bird7)
+		
+		bird8=bird7.clone()
+		bird8.position.set(-50, 70, -190);
+		scene.add(bird8)
+		
+		bird9=bird8.clone()
+		bird9.position.set(-50, 80, -190);
+		scene.add(bird9)
+		
+		bird10=bird9.clone()
+		bird10.position.set(-50, 90, -190);
+		scene.add(bird10)
+		
+		bird11=bird10.clone()
+		bird11.position.set(-50, 100, -190);
+		scene.add(bird11)
+		
+		bird12=bird11.clone()
+		bird12.position.set(-50, -20, -190);
+		scene.add(bird12)
+		
+		bird13=bird12.clone()
+		bird13.position.set(-50, -90, -190);
+		scene.add(bird13)
+		
+		bird14=bird13.clone()
+		bird14.position.set(-50, -80, -190);
+		scene.add(bird14)
+		
+		bird15=bird14.clone()
+		bird15.position.set(-50, -70, -190);
+		scene.add(bird15)
+		
+		bird16=bird15.clone()
+		bird16.position.set(-50, -60, -190);
+		scene.add(bird16)
+		
+		bird17=bird16.clone()
+		bird17.position.set(-50, -50, -190);
+		scene.add(bird17)
+		
+		bird18=bird17.clone()
+		bird18.position.set(-50, -40, -190);
+		scene.add(bird18)
+		
+		bird19=bird18.clone()
+		bird19.position.set(-10, -30, -190);
+		scene.add(bird19)
+		
+		bird20=bird19.clone()
+		bird20.position.set(-50, -20, -190);
+		scene.add(bird20)*/
+		//s=""
+		//for (i in bird1.geometry.faces[0].color) s+=i+"\n" 
+		//alert(bird1.geometry.faces[0].color.getHSL)
+		
+		var sphereGeometry = new THREE.SphereGeometry(4,20,20);
+        var sphereMaterial = new THREE.MeshBasicMaterial({color: 0x7777ff, wireframe: true});
+       var sphere = new THREE.Mesh(sphereGeometry,sphereMaterial);
+		
+		scene.add(sphere) 
+		
+		light0 = new THREE.PointLight(0xffffff, 1);
+		light0.position.set(0, 2, 7);
+		scene.add(light0);
+	
+	
+	
+		var render = function () {
+			requestAnimationFrame( render );
+			/*wt=bird1.geometry.vertices[0]
+			incr=.5
+			wt.x +=incr 
+			myobject.Geometry.VerticesNeedUpdate=True;
+			myobject.geometry.dynamic=True;*/
+			bird1.rotation.y-= Math.random() *0.02;
+			/*bird2.rotation.y+= Math.random() *0.023;
+			bird3.rotation.y-= Math.random() *0.013;
+			bird4.rotation.y+= Math.random() *0.012;
+			bird5.rotation.y-= Math.random() *0.012;
+			bird6.rotation.y+= Math.random() *0.012;
+			bird7.rotation.y-= Math.random() *0.012;
+			bird8.rotation.y+= Math.random() *0.012;
+			bird9.rotation.y-= Math.random() *0.012;
+			bird10.rotation.y+= Math.random() *0.012;
+			bird11.rotation.y-= Math.random() *0.012;
+			bird12.rotation.y+= Math.random() *0.012;
+			bird13.rotation.y-= Math.random() *0.012;
+			bird14.rotation.y+= Math.random() *0.012;
+			bird15.rotation.y-= Math.random() *0.012;
+			bird16.rotation.y+= Math.random() *0.012;
+			bird17.rotation.y-= Math.random() *0.012;
+			bird18.rotation.y+= Math.random() *0.012;
+			bird19.rotation.y-= Math.random() *0.012;
+			bird20.rotation.y+= Math.random() *0.012;
+			sphere.rotation.y-= Math.random() *0.013;*/
+			
+			renderer.render(scene, camera);
+		};
+
+		render();
+		
+		function colorset(G){
+			for ( var i = 0; i < G.faces.length; i ++ ) {
+				var hue=(i*360)/G.faces.length
+				var color = new THREE.Color("hsl("+hue+", 50%, 70%)");
+				G.faces[ i ].color.set( color );
+			}
+		}
+</script>
+	</body>
+</html>
