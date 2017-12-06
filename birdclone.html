@@ -39,6 +39,27 @@
 		geom.faces.push( new THREE.Face3( 4, 5, 2 ) );
 		geom.computeFaceNormals();
 		
+		
+		geom2= geom.clone()
+		geom3= geom.clone()
+		geom4= geom.clone()
+		geom5= geom.clone()
+		geom6= geom.clone()
+		geom7= geom.clone()
+		geom8= geom.clone()
+		geom9= geom.clone()
+		geom10= geom.clone()
+		geom11= geom.clone()
+		geom12= geom.clone()
+		geom13= geom.clone()
+		geom14= geom.clone()
+		geom15= geom.clone()
+		geom16= geom.clone()
+		geom17= geom.clone()
+		geom18= geom.clone()
+		geom19= geom.clone()
+		geom20= geom.clone()	
+		
 		function ranPos(){
 			return Math.floor((Math.random() *80) -40);
 		}
@@ -61,7 +82,7 @@
 		scene.add(bird1);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird2 = new THREE.Mesh( geom, material);
+		bird2 = new THREE.Mesh( geom2, material);
 		bird2.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird2.scale.set(scale, scale, scale);
@@ -70,7 +91,7 @@
 		scene.add(bird2);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird3 = new THREE.Mesh( geom, material);
+		bird3 = new THREE.Mesh( geom3, material);
 		bird3.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird3.scale.set(scale, scale, scale);
@@ -79,7 +100,7 @@
 		scene.add(bird3);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird4 = new THREE.Mesh( geom, material);
+		bird4 = new THREE.Mesh( geom4, material);
 		bird4.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird4.scale.set(scale, scale, scale);
@@ -88,7 +109,7 @@
 		scene.add(bird4);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird5 = new THREE.Mesh( geom, material);
+		bird5 = new THREE.Mesh( geom5, material);
 		bird5.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird5.scale.set(scale, scale, scale);
@@ -97,7 +118,7 @@
 		scene.add(bird5);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird6 = new THREE.Mesh( geom, material);
+		bird6 = new THREE.Mesh( geom6, material);
 		bird6.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird6.scale.set(scale, scale, scale);
@@ -106,7 +127,7 @@
 		scene.add(bird6);
 		
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
-		bird7 = new THREE.Mesh( geom, material);
+		bird7 = new THREE.Mesh( geom7, material);
 		bird7.position.set(ranPos(), runPos(), ranZ());
 		scale = ranScale();
 		bird7.scale.set(scale, scale, scale);
@@ -114,8 +135,125 @@
 		colorset(bird7.geometry)
 		scene.add(bird7);
 		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird8 = new THREE.Mesh( geom8, material);
+		bird8.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird8.scale.set(scale, scale, scale);
+		bird8.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird8.geometry)
+		scene.add(bird8);
 		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird9 = new THREE.Mesh( geom9, material);
+		bird9.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird9.scale.set(scale, scale, scale);
+		bird9.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird9.geometry)
+		scene.add(bird9);
 		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird10 = new THREE.Mesh( geom10, material);
+		bird10.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird10.scale.set(scale, scale, scale);
+		bird10.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird10.geometry)
+		scene.add(bird10);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird11 = new THREE.Mesh( geom11, material);
+		bird11.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird11.scale.set(scale, scale, scale);
+		bird11.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird11.geometry)
+		scene.add(bird11);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird12 = new THREE.Mesh( geom12, material);
+		bird12.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird12.scale.set(scale, scale, scale);
+		bird12.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird12.geometry)
+		scene.add(bird12);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird13 = new THREE.Mesh( geom13, material);
+		bird13.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird13.scale.set(scale, scale, scale);
+		bird13.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird13.geometry)
+		scene.add(bird13);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird14 = new THREE.Mesh( geom14, material);
+		bird14.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird14.scale.set(scale, scale, scale);
+		bird14.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird14.geometry)
+		scene.add(bird14);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird15 = new THREE.Mesh( geom15, material);
+		bird15.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird15.scale.set(scale, scale, scale);
+		bird15.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird15.geometry)
+		scene.add(bird15);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird16 = new THREE.Mesh( geom16, material);
+		bird16.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird16.scale.set(scale, scale, scale);
+		bird16.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird16.geometry)
+		scene.add(bird16);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird17 = new THREE.Mesh( geom17, material);
+		bird17.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird17.scale.set(scale, scale, scale);
+		bird17.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird17.geometry)
+		scene.add(bird17);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird18 = new THREE.Mesh( geom18, material);
+		bird18.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird18.scale.set(scale, scale, scale);
+		bird18.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird18.geometry)
+		scene.add(bird18);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird19 = new THREE.Mesh( geom19, material);
+		bird19.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird19.scale.set(scale, scale, scale);
+		bird19.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird19.geometry)
+		scene.add(bird19);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird20 = new THREE.Mesh( geom20, material);
+		bird20.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird20.scale.set(scale, scale, scale);
+		bird20.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird20.geometry)
+		scene.add(bird20);
+		
+			
+
 		
 		/*bird2=bird1.clone()
 		bird2.position.set (50, 0, -90);
@@ -219,6 +357,151 @@
 			vt.y += incr;
 			vc.y += incr;			
 			
+			bird2.geometry.verticesNeedUpdate=true;
+			bird2.geometry.dynamic=true;
+			
+			vt=bird2.geometry.vertices[0];
+			vc=bird2.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird3.geometry.verticesNeedUpdate=true;
+			bird3.geometry.dynamic=true;
+			
+			vt=bird3.geometry.vertices[0];
+			vc=bird3.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird4.geometry.verticesNeedUpdate=true;
+			bird4.geometry.dynamic=true;
+			
+			vt=bird4.geometry.vertices[0];
+			vc=bird4.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird5.geometry.verticesNeedUpdate=true;
+			bird5.geometry.dynamic=true;
+			
+			vt=bird5.geometry.vertices[0];
+			vc=bird5.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird6.geometry.verticesNeedUpdate=true;
+			bird6.geometry.dynamic=true;
+			
+			vt=bird6.geometry.vertices[0];
+			vc=bird6.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird7.geometry.verticesNeedUpdate=true;
+			bird7.geometry.dynamic=true;
+			
+			vt=bird7.geometry.vertices[0];
+			vc=bird7.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird8.geometry.verticesNeedUpdate=true;
+			bird8.geometry.dynamic=true;
+			
+			vt=bird8.geometry.vertices[0];
+			vc=bird8.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird9.geometry.verticesNeedUpdate=true;
+			bird9.geometry.dynamic=true;
+			
+			vt=bird9.geometry.vertices[0];
+			vc=bird9.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird10.geometry.verticesNeedUpdate=true;
+			bird10.geometry.dynamic=true;
+			
+			vt=bird10.geometry.vertices[0];
+			vc=bird10.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird11.geometry.verticesNeedUpdate=true;
+			bird11.geometry.dynamic=true;
+			
+			vt=bird11.geometry.vertices[0];
+			vc=bird11.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird12.geometry.verticesNeedUpdate=true;
+			bird12.geometry.dynamic=true;
+			
+			vt=bird12.geometry.vertices[0];
+			vc=bird12.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird13.geometry.verticesNeedUpdate=true;
+			bird13.geometry.dynamic=true;
+			
+			vt=bird14.geometry.vertices[0];
+			vc=bird14.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird15.geometry.verticesNeedUpdate=true;
+			bird15.geometry.dynamic=true;
+			
+			vt=bird15.geometry.vertices[0];
+			vc=bird15.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird16.geometry.verticesNeedUpdate=true;
+			bird16.geometry.dynamic=true;
+			
+			vt=bird16.geometry.vertices[0];
+			vc=bird16.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird17.geometry.verticesNeedUpdate=true;
+			bird17.geometry.dynamic=true;
+			
+			vt=bird17.geometry.vertices[0];
+			vc=bird17.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird18.geometry.verticesNeedUpdate=true;
+			bird18.geometry.dynamic=true;
+			
+			vt=bird18.geometry.vertices[0];
+			vc=bird18.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird19.geometry.verticesNeedUpdate=true;
+			bird19.geometry.dynamic=true;
+			
+			vt=bird19.geometry.vertices[0];
+			vc=bird19.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			bird20.geometry.verticesNeedUpdate=true;
+			bird20.geometry.dynamic=true;
+			
+			vt=bird20.geometry.vertices[0];
+			vc=bird20.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+		
 			
 			if((vt.y>=2)||(vt.y<=-2)){
 			incr = -incr;
@@ -227,24 +510,24 @@
 			bird1.rotation.y-= Math.random() *0.05;
 			bird2.rotation.y+= Math.random() *0.023;
 			bird3.rotation.y-= Math.random() *0.013;
-			bird4.rotation.y+= Math.random() *0.012;
-			bird5.rotation.y-= Math.random() *0.012;
-			bird6.rotation.y+= Math.random() *0.012;
-			bird7.rotation.y-= Math.random() *0.012;
-			/*bird8.rotation.y+= Math.random() *0.012;
-			bird9.rotation.y-= Math.random() *0.012;
-			bird10.rotation.y+= Math.random() *0.012;
-			bird11.rotation.y-= Math.random() *0.012;
-			bird12.rotation.y+= Math.random() *0.012;
-			bird13.rotation.y-= Math.random() *0.012;
-			bird14.rotation.y+= Math.random() *0.012;
-			bird15.rotation.y-= Math.random() *0.012;
-			bird16.rotation.y+= Math.random() *0.012;
-			bird17.rotation.y-= Math.random() *0.012;
-			bird18.rotation.y+= Math.random() *0.012;
-			bird19.rotation.y-= Math.random() *0.012;
-			bird20.rotation.y+= Math.random() *0.012;
-			sphere.rotation.y-= Math.random() *0.013;*/
+			bird4.rotation.y+= Math.random() *0.013;
+			bird5.rotation.y-= Math.random() *0.014;
+			bird6.rotation.y+= Math.random() *0.015;
+			bird7.rotation.y-= Math.random() *0.016;
+			bird8.rotation.y+= Math.random() *0.017;
+			bird9.rotation.y-= Math.random() *0.018;
+			bird10.rotation.y+= Math.random() *0.019;
+			bird11.rotation.y-= Math.random() *0.024;
+			bird12.rotation.y+= Math.random() *0.022;
+			bird13.rotation.y-= Math.random() *0.06;
+			bird14.rotation.y+= Math.random() *0.07;
+			bird15.rotation.y-= Math.random() *0.09;
+			bird16.rotation.y+= Math.random() *0.01;
+			bird17.rotation.y-= Math.random() *0.02;
+			bird18.rotation.y+= Math.random() *0.03;
+			bird19.rotation.y-= Math.random() *0.04;
+			bird20.rotation.y+= Math.random() *0.08;
+			sphere.rotation.y-= Math.random() *0.013;
 			
 			renderer.render(scene, camera);
 		};
