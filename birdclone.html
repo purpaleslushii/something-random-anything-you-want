@@ -56,11 +56,65 @@
 		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
 		bird1 = new THREE.Mesh( geom, material);
 		bird1.position.set(ranPos(), runPos(), ranZ());
-		scale = ranScale();
-		bird1.scale.set(scale, scale, scale);
 		bird1.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
 		colorset(bird1.geometry)
 		scene.add(bird1);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird2 = new THREE.Mesh( geom, material);
+		bird2.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird2.scale.set(scale, scale, scale);
+		bird2.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird2.geometry)
+		scene.add(bird2);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird3 = new THREE.Mesh( geom, material);
+		bird3.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird3.scale.set(scale, scale, scale);
+		bird3.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird3.geometry)
+		scene.add(bird3);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird4 = new THREE.Mesh( geom, material);
+		bird4.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird4.scale.set(scale, scale, scale);
+		bird4.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird4.geometry)
+		scene.add(bird4);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird5 = new THREE.Mesh( geom, material);
+		bird5.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird5.scale.set(scale, scale, scale);
+		bird5.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird5.geometry)
+		scene.add(bird5);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird6 = new THREE.Mesh( geom, material);
+		bird6.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird6.scale.set(scale, scale, scale);
+		bird6.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird6.geometry)
+		scene.add(bird6);
+		
+		material=new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors ,side: THREE.DoubleSide } ) 
+		bird7 = new THREE.Mesh( geom, material);
+		bird7.position.set(ranPos(), runPos(), ranZ());
+		scale = ranScale();
+		bird7.scale.set(scale, scale, scale);
+		bird7.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(50, 0, 0 ) );
+		colorset(bird7.geometry)
+		scene.add(bird7);
+		
+		
 		
 		
 		/*bird2=bird1.clone()
@@ -151,28 +205,33 @@
 		light0.position.set(0, 2, 7);
 		scene.add(light0);
 	
-		var incr = .5
-	
+		incr = 0.5
+		
+		
 		var render = function () {
 			requestAnimationFrame( render );
 			
-			wt=bird1.geometry.vertices[0].y;
-			wt+= incr;
-			
-			
-			if((wt.x<=-30)||(wt.x>=0)){
-			incr = -incr;
-			}
 			bird1.geometry.verticesNeedUpdate=true;
 			bird1.geometry.dynamic=true;
-			bird1.rotation.y-= Math.random() *0.07;
-			/*bird2.rotation.y+= Math.random() *0.023;
+			
+			vt=bird1.geometry.vertices[0];
+			vc=bird1.geometry.vertices[5];
+			vt.y += incr;
+			vc.y += incr;			
+			
+			
+			if((vt.y>=2)||(vt.y<=-2)){
+			incr = -incr;
+			}
+			
+			bird1.rotation.y-= Math.random() *0.05;
+			bird2.rotation.y+= Math.random() *0.023;
 			bird3.rotation.y-= Math.random() *0.013;
 			bird4.rotation.y+= Math.random() *0.012;
 			bird5.rotation.y-= Math.random() *0.012;
 			bird6.rotation.y+= Math.random() *0.012;
 			bird7.rotation.y-= Math.random() *0.012;
-			bird8.rotation.y+= Math.random() *0.012;
+			/*bird8.rotation.y+= Math.random() *0.012;
 			bird9.rotation.y-= Math.random() *0.012;
 			bird10.rotation.y+= Math.random() *0.012;
 			bird11.rotation.y-= Math.random() *0.012;
